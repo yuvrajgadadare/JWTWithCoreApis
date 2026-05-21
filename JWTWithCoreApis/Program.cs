@@ -4,6 +4,7 @@ using JWTWithCoreApis.Models;
 using JWTWithCoreApis.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
@@ -15,6 +16,11 @@ builder.Services.AddDbContext<CoreapidbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("MyCon"));
 });
+builder.Services.AddAutoMapper(e =>
+{
+
+},typeof(Program));
+//builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddTransient<IProductService, ProductService>();
 builder.Services.AddTransient<IStudentService, StudentService>();
 builder.Services.AddTransient<ICustomerService, CustomerService>();
