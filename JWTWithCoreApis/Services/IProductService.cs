@@ -6,8 +6,8 @@ namespace JWTWithCoreApis.Services
     {
         ProductModel AddProduct(ProductModel product);
         ProductModel UpdateProduct(ProductModel product);
-        void DeleteProduct(int Id);
-        List<ProductModel> GetProducts();
-        ProductModel GetProduct(int Id);
+        Task DeleteProduct(int Id);
+      Task<List<ProductModel>> GetProducts();
+        Task<ProductModel> GetProduct(int Id);
     }
 }

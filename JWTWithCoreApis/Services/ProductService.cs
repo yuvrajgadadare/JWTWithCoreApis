@@ -34,15 +34,15 @@ namespace JWTWithCoreApis.Services
             return pm;
         }
 
-        public void DeleteProduct(int Id)
+        public async Task DeleteProduct(int Id)
         {
             TblProduct p = db.TblProducts.Find(Id);
-            db.TblProducts.Remove(p);
+             db.TblProducts.Remove(p);
             db.SaveChanges();
 
         }
 
-        public ProductModel GetProduct(int Id)
+        public async Task<ProductModel> GetProduct(int Id)
         {
             TblProduct p=db.TblProducts.Find(Id);
             ProductModel pm = new ProductModel()
@@ -57,7 +57,7 @@ namespace JWTWithCoreApis.Services
             return pm;
         }
 
-        public List<ProductModel> GetProducts()
+        public async Task<List<ProductModel>> GetProducts()
         {
             List<ProductModel> lst = new List<ProductModel>();
             foreach(var p in db.TblProducts.ToList())

@@ -20,16 +20,16 @@ namespace JWTWithCoreApis.Controllers
         }
         [HttpGet]
         [Route("api/product")]
-        public List<ProductModel> GetAll()
+        public async Task<List<ProductModel>> GetAll()
         {
             string userId = User.FindFirst(ClaimTypes.Name)?.Value;
-            return productService.GetProducts();
+            return await productService.GetProducts();
         }
         [HttpGet]
         [Route("api/product/{id}")]
-        public  ProductModel  GetById(int id)
+        public async Task< ProductModel>  GetById(int id)
         {
-            return productService.GetProduct(id);
+            return await productService.GetProduct(id);
         }
         [HttpPost]
         [Route("api/product")]
@@ -46,9 +46,9 @@ namespace JWTWithCoreApis.Controllers
 
         [HttpPatch]
         [Route("api/product/{id}")]
-        public ProductModel PartialUpdateProduct(int id, ProductModel p)
+        public async Task<ProductModel> PartialUpdateProduct(int id, ProductModel p)
         {
-            ProductModel pr =productService.GetProduct(id);
+            ProductModel pr =await productService.GetProduct(id);
             pr.Rate = p.Rate;
             productService.UpdateProduct(pr);
             return pr;

@@ -1,5 +1,6 @@
 
 
+using JWTWithCoreApis.Middlewares;
 using JWTWithCoreApis.Models;
 using JWTWithCoreApis.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -16,6 +17,13 @@ builder.Services.AddDbContext<CoreapidbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("MyCon"));
 });
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration.GetConnectionString("Redis");
+    options.InstanceName = "MyApp_"; // Optional prefix to isolate cache keys
+});
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
 builder.Services.AddAutoMapper(e =>
 {
 
@@ -103,6 +111,7 @@ app.UseSwaggerUI();
 //    app.UseHsts();
 //}
 
+app.UseExceptionHandler();
 app.UseHttpsRedirection();
 app.UseRouting(); 
 app.UseCors("MyPolicy");
@@ -111,10 +120,11 @@ app.UseSwagger();
 app.UseSwaggerUI();
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-});
+//app.UseEndpoints(endpoints =>
+//{
+//    endpoints.MapControllers();
+//});
+//app.UseMiddleware<ExceptionMiddleware>();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

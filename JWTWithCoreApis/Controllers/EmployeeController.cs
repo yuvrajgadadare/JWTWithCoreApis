@@ -27,6 +27,7 @@ namespace JWTWithCoreApis.Controllers
         public IActionResult Login(Tblemployee employee)
         {
             Tblemployee emp = _context.Tblemployees.ToList().FirstOrDefault(e => e.EmployeeCode.Equals(employee.EmployeeCode) & e.Password.Equals(employee.Password));
+            string name = emp.EmployeeName;
             if (emp != null)
             {
                 var authclaims = new List<Claim>()
