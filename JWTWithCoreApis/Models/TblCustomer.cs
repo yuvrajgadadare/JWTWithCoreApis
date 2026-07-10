@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace JWTWithCoreApis.Models;
 
 public partial class TblCustomer
 {
+    [Key]
     public int CustomerId { get; set; }
 
     public string? CustomerName { get; set; }

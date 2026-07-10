@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace JWTWithCoreApis.Models;
 
 public partial class Tbluser
 {
+    [Key]
     public int UserId { get; set; }
 
     public string? UserName { get; set; }

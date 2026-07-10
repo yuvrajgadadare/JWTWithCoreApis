@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace JWTWithCoreApis.Models;
 
 public partial class TblProduct
 {
+    [Key]
     public int ProductId { get; set; }
 
     public string ProductName { get; set; } = null!;

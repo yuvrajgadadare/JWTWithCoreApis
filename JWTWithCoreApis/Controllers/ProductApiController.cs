@@ -38,9 +38,10 @@ namespace JWTWithCoreApis.Controllers
           return   productService.AddProduct(product);
         }
         [HttpPut]
-        [Route("api/product")]
-        public ProductModel UpdateProduct(ProductModel product)
+        [Route("api/product/{id}")]
+        public ProductModel UpdateProduct(int id,ProductModel product)
         {
+            product.ProductId = id;
             return productService.UpdateProduct(product);
         }
 

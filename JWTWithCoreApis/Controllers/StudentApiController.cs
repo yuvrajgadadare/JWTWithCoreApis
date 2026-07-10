@@ -10,7 +10,7 @@ namespace JWTWithCoreApis.Controllers
     [ApiController]
     public class StudentApiController : ControllerBase
     {
-
+        
         IStudentService studentService;
         public StudentApiController(IStudentService studentService)
         {
@@ -50,10 +50,10 @@ namespace JWTWithCoreApis.Controllers
             }
         }
         [HttpPut]
-        [Route("api/student")]
-        public TblstudentDetail UpdateProduct(TblstudentDetail student)
+        [Route("api/student/{id}")]
+        public TblstudentDetail UpdateProduct(int id,TblstudentDetail student)
         {
-
+            student.StudentId = id;
             return studentService.UpdateStudent(student);
         }
 

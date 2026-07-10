@@ -1,7 +1,10 @@
-﻿namespace JWTWithCoreApis.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace JWTWithCoreApis.Models
 {
     public class InvoiceDto
     {
+       
         public int InvoiceId { get; set; }
         public int CustomerId { get; set; }
         

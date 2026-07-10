@@ -48,9 +48,10 @@ namespace JWTWithCoreApis.Controllers
             }
         }
         [HttpPut]
-        [Route("api/customer")]
-        public CustomerModel UpdateProduct(CustomerModel customer)
+        [Route("api/customer/{id}")]
+        public CustomerModel UpdateProduct(int id , CustomerModel customer)
         {
+            customer.CustomerId = id;
             return customerService.UpdateCustomer(customer);
         }
         [HttpDelete]

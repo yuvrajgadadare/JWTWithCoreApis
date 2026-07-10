@@ -24,7 +24,7 @@ namespace JWTWithCoreApis.Controllers
 
         [HttpPost]
         [Route("api/login")]
-        public IActionResult Login(Tblemployee employee)
+        public IActionResult Login(EmployeeLoginModel employee)
         {
             Tblemployee emp = _context.Tblemployees.ToList().FirstOrDefault(e => e.EmployeeCode.Equals(employee.EmployeeCode) & e.Password.Equals(employee.Password));
             string name = emp.EmployeeName;

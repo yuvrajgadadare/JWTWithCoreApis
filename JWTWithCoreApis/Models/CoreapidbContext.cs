@@ -35,7 +35,7 @@ public partial class CoreapidbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=115.124.106.98;Database=coreapidb;User Id=apiuser;Password=CIIT#202626;TrustServerCertificate=True");
+        => optionsBuilder.UseSqlServer("Server=115.124.106.98;Database=coreapidb;User Id=coreapiuser;Password=P0wersh#t#2026;TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
