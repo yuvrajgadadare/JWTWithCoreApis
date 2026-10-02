@@ -5,13 +5,19 @@ pipeline {
     }
     stages {
         stage("Checkout") {
-         steps {
-               checkout scm
-         }
+            steps {
+                checkout scm
+            }
+
         }
-        stage("Build") {
+        stage("Restore") {
             steps {
                 bat "dotnet restore"
+            }
+        }
+
+        stage("Build") {
+            steps {
                 bat "dotnet build --configuration Release"
             }
         }
@@ -19,21 +25,27 @@ pipeline {
             steps {
                 bat "dotnet test --no-restore --configuration Release"
             }
-
         }
         stage("Publish") {
             steps {
-                script {
-                    bat "dotnet publish --no-restore --configuration Release --output .\\publish"
-                }
+                bat "dotnet publish --no-restore --configuration Release --output .\\publish"
             }
         }
-
+        stage("Deployment") {
+            steps {
+                // bat 'del /q /s "C:\\inetpub\\wwwroot\\WebApp\\"'
+                // bat '"xcopy /E /Y /I "publish\\*" "C:\\inetpub\\wwwroot\\WebApp\\"'
+                bat '''
+                        if exist "C:\\inetpub\\wwwroot\\WebApp" rmdir /q /s "C:\\inetpub\\wwwroot\\WebApp"
+                        mkdir "C:\\inetpub\\wwwroot\\WebApp"
+                    '''
+                bat "C:\\Windows\\System32\\xcopy.exe /E /Y /I publish\\* C:\\inetpub\\wwwroot\\WebApp\\"
+            }
+        }
     }
     post {
         success {
-            echo "Build, TEst and Publish stages completed successfully."
+            echo "Build, Test, Publish Stages Completed Successfully."
         }
     }
-
 }
