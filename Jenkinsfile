@@ -12,13 +12,13 @@ pipeline {
         }
         stage("Restore") {
             steps {
-                bat "dotnet restore"
+                bat "dotnet restore JWTWithCoreApis.sln"
             }
         }
 
         stage("Build") {
             steps {
-                bat "dotnet build --configuration Release"
+                bat "dotnet build JWTWithCoreApis.sln --configuration Release"
             }
         }
         stage("Test") {
